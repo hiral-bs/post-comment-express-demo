@@ -47,26 +47,26 @@ exports.createComment = async (req, res, next) => {
   }
 }
 
-exports.updateComment = async (req, res, next) => {
-  try {
-    const payload = req.body
-    const { userId, postId, commentId } = req.params
+// exports.updateComment = async (req, res, next) => {
+//   try {
+//     const payload = req.body
+//     const { userId, postId, commentId } = req.params
 
-    const commentToUpdate = await Comments.findOneAndUpdate(
-      { userId, postId, _id: commentId },
-      { $set: payload },
-      { new: true }
-    ).lean();
+//     const commentToUpdate = await Comments.findOneAndUpdate(
+//       { userId, postId, _id: commentId },
+//       { $set: payload },
+//       { new: true }
+//     ).lean();
 
-    if (!commentToUpdate) {
-      throw createError(404, "comment does not exist")
-    }
+//     if (!commentToUpdate) {
+//       throw createError(404, "comment does not exist")
+//     }
 
-    return res.json(commentToUpdate)
-  } catch (err) {
-    next(err)
-  }
-}
+//     return res.json(commentToUpdate)
+//   } catch (err) {
+//     next(err)
+//   }
+// }
 
 exports.deleteComment = async (req, res, next) => {
   try {
